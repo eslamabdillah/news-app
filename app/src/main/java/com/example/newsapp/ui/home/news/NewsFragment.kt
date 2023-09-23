@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -41,15 +40,17 @@ class NewsFragment : Fragment() {
 
     val adapter = NewsAdapter()
     private fun initView() {
+        viewBinding.vm = viewModel
+        viewBinding.lifecycleOwner = this
         viewBinding.recycler.adapter = adapter
     }
 
     private fun initObservers() {
-        viewModel.shouldShowLoading.observe(viewLifecycleOwner, object : Observer<Boolean> {
-            override fun onChanged(isvisivle: Boolean) {
-                viewBinding.progressBar.isVisible = isvisivle
-            }
-        })
+//        viewModel.shouldShowLoading.observe(viewLifecycleOwner, object : Observer<Boolean> {
+//            override fun onChanged(isvisivle: Boolean) {
+//                viewBinding.progressBar.isVisible = isvisivle
+//            }
+//        })
 
         viewModel.sourcesLiveData.observe(viewLifecycleOwner, object : Observer<List<Source?>?> {
             override fun onChanged(sources: List<Source?>?) {

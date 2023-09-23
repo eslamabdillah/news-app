@@ -12,8 +12,10 @@ fun Fragment.showMessage(
     negActionName: String? = null,
     negAction: DialogInterface.OnClickListener? = null,
 ): AlertDialog {
+
     //object from alertDialog
     val dialogBuilder = AlertDialog.Builder(context)
+
     //option in AlertDialog
     dialogBuilder.setMessage(message)
     if (posActionName !== null) {
